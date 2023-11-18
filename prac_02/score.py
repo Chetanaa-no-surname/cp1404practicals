@@ -16,13 +16,10 @@ def main():
     score = validate_score(score)
     result = determine_grade(score)
     print(result)
-
-
-def get_random_score():
-    """Gets random number, outputs results"""
+    #Adding random_score
     random_score = random.randint(MINIMUM_SCORE, MAXIMUM_SCORE)
-    result = determine_grade(random_score)
-    print(f"Your score is {random_score}. Your result is {result}")
+    random_result = determine_grade(random_score)
+    print(f"Your score is {random_score}.The result is {random_result}")
 
 
 def validate_score(score):
@@ -44,4 +41,3 @@ def determine_grade(score):
 
 
 main()
-get_random_score()
