@@ -12,7 +12,8 @@ PASSABLE_THRESHOLD = 50
 
 def main():
     """Input and Output function"""
-    score = validate_score()
+    score = float(input("Enter score: "))
+    score = validate_score(score)
     result = determine_grade(score)
     print(result)
 
@@ -24,9 +25,8 @@ def get_random_score():
     print(f"Your score is {random_score}. Your result is {result}")
 
 
-def validate_score():
+def validate_score(score):
     """Determines score is valid"""
-    score = float(input("Enter score: "))
     while score < MINIMUM_SCORE or score > MAXIMUM_SCORE:
         print("Invalid score")
         score = float(input("Enter valid score: "))
