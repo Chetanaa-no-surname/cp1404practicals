@@ -10,3 +10,5 @@ def censor_password(password):
 def get_password():
     password = input("Enter password: ")
     return password
+
+main()
