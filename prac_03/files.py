@@ -17,13 +17,19 @@ print(f"Your name is {name}")
 out_file.close()
 
 # Part 3.
-FILENAME = "numbers"
-out_file = open(FILENAME, "r")
+FILENAME = "numbers.txt"
+in_file = open(FILENAME, "r")
 
 total = 0
-line_number = 0
-for line in out_file:
-    if line_number < 2:
-        total += int(line)
-    line_number += 1
+two_lines = in_file.readlines()[0:2]
+
+for line in two_lines:
+    total += int(line.strip("\n"))
+
 print(f"Result is {total}")
+
+out_file.close()
+
+
+
+
