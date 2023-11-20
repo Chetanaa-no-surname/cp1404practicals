@@ -14,12 +14,14 @@ MAX_DECREASE = 0.05  # 5%
 MIN_PRICE = 1.0  # Minimum changed from 0.01  to 1
 MAX_PRICE = 100.0  # Maximum changed from 1000, to 100
 INITIAL_PRICE = 10.0
+OUTPUT_FILE = "Capitalist_Conrad.txt"
 
+
+out_file = open(OUTPUT_FILE, 'w')
 price = INITIAL_PRICE
-print(f"Starting price: ${price:,.2f}")
+print(f"Starting price: ${price:,.2f}",file=out_file)
 
 days = 0
-
 while MIN_PRICE <= price <= MAX_PRICE:
     days += 1
     price_change = 0
@@ -35,4 +37,6 @@ while MIN_PRICE <= price <= MAX_PRICE:
         price_change = random.uniform(-MAX_DECREASE, 0)
 
     price *= (1 + price_change)
-    print(f"On day {days} price is: ${price:,.2f}")
+    print(f"On day {days} price is: ${price:,.2f}",file=out_file)
+
+out_file.close()
