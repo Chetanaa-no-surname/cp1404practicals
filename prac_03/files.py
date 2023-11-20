@@ -30,6 +30,18 @@ print(f"Result is {total}")
 
 out_file.close()
 
+# Part 4.
+FILENAME = "numbers.txt"
+in_file = open(FILENAME, "r")
+
+total = 0
+
+for line in in_file:
+    total += int(line.strip("\n"))
+print(f"Total is {total}")
+
+out_file.close()
+
 
 
 
