@@ -7,6 +7,7 @@ FILENAME = "subject_data.txt"
 
 
 def main():
+    """Runs the needed functions"""
     data = get_data()
     print(data)
 
@@ -30,6 +31,7 @@ def get_data():
     return datas
 
 def display_data(datas):
+    """Display of data according to needed output"""
     for data in datas:
         print(f"{data[0]} is taught by {data[1]} and has {data[2]} students ")
 
