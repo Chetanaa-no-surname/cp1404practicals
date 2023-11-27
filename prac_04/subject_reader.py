@@ -13,6 +13,7 @@ def main():
 
     display_data(data)
 
+
 def get_data():
     """Read data from file formatted like: subject,lecturer,number of students."""
     input_file = open(FILENAME)
@@ -29,6 +30,7 @@ def get_data():
         print("----------")
     input_file.close()
     return datas
+
 
 def display_data(datas):
     """Display of data according to needed output"""
