@@ -6,6 +6,7 @@ ROUNDS = 5
 
 
 def main():
+    """Input and output necessary data calculations"""
     numbers = []
     for i in range(ROUNDS):
         number = int(input("Number: "))
@@ -19,6 +20,7 @@ def main():
 
 
 def get_access():
+    """Checking if usernames have access to system"""
     usernames = ['jimbo', 'giltson98', 'derekf', 'WhatSup', 'NicolEye', 'swei45', 'BaseInterpreterInterface',
                  'BaseStdIn',
                  'Command', 'ExecState', 'InteractiveConsole', 'InterpreterInterface', 'StartServer', 'bob']
