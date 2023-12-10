@@ -2,8 +2,8 @@
 CP1404/CP5632 Practical
 Guitar
 
-Estimated Time: 35 mins
-Actual Time:  mins
+Estimated Time: 45 mins
+Actual Time:  38 mins
 """
 
 
