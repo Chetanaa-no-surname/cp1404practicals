@@ -7,6 +7,7 @@ from prac_06.guitar import Guitar
 
 
 def main():
+    """Testing guitar OOP"""
     guitar_1 = Guitar("Guitar 1", 1923, 20.5)
     guitar_2 = Guitar("Guitar 2", 2000, 500.23)
 
