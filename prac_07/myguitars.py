@@ -12,3 +12,4 @@ guitars = sorted(guitars)
 
 for guitar in guitars:
     print(f"{guitar.name} was bought in {guitar.year} and costs {guitar.cost}")
+
