@@ -21,7 +21,7 @@ def main():
         elif option == "D":
             display_project(datas)
         elif option == "F":
-            sort_project()
+            sort_project(datas)
         elif option == "A":
             add_data()
         elif option == "U":
@@ -85,8 +85,12 @@ def display_project(datas):
         print("{0}, start: {1}, priority {2}, estimate: ${3}, completion: {4}%".format(data.name,data.date.strftime("%d/%m/%Y"),data.priority,data.cost,data.completion))
 
 
-def sort_project():
-    pass
+def sort_project(datas):
+    date = input("Show projects that start after date (dd/mm/yy): ")
+    date = datetime.datetime.strptime(date, "%d/%m/%Y").date()
+    for data in datas:
+        if data.date >= date:
+            print("{0}, start: {1}, priority {2}, estimate: ${3}, completion: {4}%".format(data.name,data.date.strftime("%d/%m/%Y"),data.priority, data.cost,data.completion))
 
 
 def add_data():
