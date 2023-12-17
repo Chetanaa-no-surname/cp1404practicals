@@ -2,6 +2,7 @@ from prac_07.guitar import Guitar
 
 
 def main():
+    """Inputs and outputs data"""
     guitars = get_file_data("guitars")
     print_data(guitars)
     guitars = sorted(guitars)
@@ -24,6 +25,7 @@ def main():
 
 
 def get_file_data(name):
+    """Inputs data from file"""
     in_file = open(f"{name}.csv", "r")
     guitars = []
     for line in in_file:
@@ -34,11 +36,13 @@ def get_file_data(name):
 
 
 def print_data(guitars):
+    """Prints the data neatly"""
     for guitar in guitars:
         print(f"{guitar.name} was bought in {guitar.year} and costs {guitar.cost}")
 
 
 def write_to_file(datas, name):
+    """Append the new data to file"""
     in_file = open(f"{name}.csv", "a")
     for data in datas:
         in_file.write(f"\n{data[0]},{data[1]},{data[2]}")
