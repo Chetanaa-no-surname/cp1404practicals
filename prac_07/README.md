@@ -5,9 +5,9 @@
 
 Practical 7, all it's exercises and files
 
-- Do not add too much comments or it'll become noise
-- 
-- lessens 3
+- Do not add too much comments, or it'll become noise
+- Plan the functions you can use
+- Do not use long variable names
 
 [Programming patterns]
 [CP1404 PRAC Intructions]
