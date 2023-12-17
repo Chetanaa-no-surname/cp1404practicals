@@ -2,6 +2,7 @@
 CP1404/CP5632 Practical
 """
 import datetime
+from project import Project
 
 MENU = "- (L)oad projects\n- (S)ave projects\n- (D)isplay projects\n- (F)ilter projects by date\n- (A)dd new project\n- (U)pdate project\n- (Q)uit"
 
@@ -16,9 +17,9 @@ def main():
             datas = load_project(name)
         elif option == "S":
             # name = input("Enter file name: ")
-            save_project(name,datas)
+            save_project(name, datas)
         elif option == "D":
-            display_project()
+            display_project(datas)
         elif option == "F":
             sort_project()
         elif option == "A":
@@ -35,6 +36,7 @@ def main():
 def load_project(name):
     in_file = open(f"{name}.txt", "r")
     datas = []
+    object_datas = []
     for line in in_file:
         line_data = line.strip('\t').strip('\n')
         line_data = line_data.split("	")  # Did this as two lines to make it clearer
@@ -42,7 +44,10 @@ def load_project(name):
     datas = datas[1:]
     changed_to_datetime(datas)
     in_file.close()
-    return datas
+
+    for data in datas:
+        object_datas.append(Project(data[0], data[1], int(data[2]), float(data[3]), int(data[4])))
+    return object_datas
 
 
 def changed_to_datetime(datas):
@@ -52,17 +57,32 @@ def changed_to_datetime(datas):
     return datas
 
 
-def save_project(name,datas):
-    in_file = open(f"{name}.txt","w")
+def save_project(name, datas):
+    in_file = open(f"{name}.txt", "w")
     in_file.write("Name	Start Date	Priority	Cost Estimate	Completion Percentage")
     for data in datas:
-        print(data)
-        in_file.write("\n{0}	{1}	{2}	{3}	{4}".format(data[0],data[1].strftime("%d/%m/%Y"),data[2],data[3],data[4]))
+        in_file.write("\n{0}	{1}	{2}	{3}	{4}".format(data.name, data.date.strftime("%d/%m/%Y"), data.priority, data.cost,data.completion))
     in_file.close()
 
 
-def display_project():
-    pass
+def display_project(datas):
+    incomplete = []
+    complete = []
+    for data in datas:
+        if data.completion == 100:
+            complete.append(data)
+        else:
+            incomplete.append(data)
+
+    print("Incomplete projects:")
+    incomplete = sorted(incomplete)
+    for data in incomplete:
+        print("{0}, start: {1}, priority {2}, estimate: ${3}, completion: {4}%".format(data.name,data.date.strftime("%d/%m/%Y"),data.priority,data.cost,data.completion))
+
+    print("Completed projects: ")
+    complete = sorted(complete)
+    for data in complete:
+        print("{0}, start: {1}, priority {2}, estimate: ${3}, completion: {4}%".format(data.name,data.date.strftime("%d/%m/%Y"),data.priority,data.cost,data.completion))
 
 
 def sort_project():

@@ -18,6 +18,8 @@ class Project:
         self.completion = new_completion
         self.priority = new_priority
 
+    def __lt__(self, other):
+        return self.priority < other.priority
 
 
 
