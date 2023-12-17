@@ -4,7 +4,10 @@ CP1404/CP5632 Practical
 import datetime
 from project import Project
 
-MENU = "- (L)oad projects\n- (S)ave projects\n- (D)isplay projects\n- (F)ilter projects by date\n- (A)dd new project\n- (U)pdate project\n- (Q)uit"
+MENU = ("- (L)oad projects\n- (S)ave projects\n- (D)isplay projects\n- (F)ilter projects by date\n- (A)dd new "
+        "project\n- (U)pdate project\n- (Q)uit")
+
+PRINTING = "{0}, start: {1}, priority {2}, estimate: ${3}, completion: {4}%"
 
 
 def main():
@@ -26,7 +29,7 @@ def main():
         elif option == "A":
             datas = add_data(datas)
         elif option == "U":
-            update_data()
+            datas = update_data(datas)
         else:
             print("Invalid option ")
         option = input(">>> ").upper()
@@ -80,18 +83,18 @@ def display_project(datas):
     print("Incomplete projects:")
     incomplete = sorted(incomplete)
     for data in incomplete:
-        print("{0}, start: {1}, priority {2}, estimate: ${3}, completion: {4}%".format(data.name,
-                                                                                       data.date.strftime("%d/%m/%Y"),
-                                                                                       data.priority, data.cost,
-                                                                                       data.completion))
+        print(PRINTING.format(data.name,
+                              data.date.strftime("%d/%m/%Y"),
+                              data.priority, data.cost,
+                              data.completion))
 
     print("Completed projects: ")
     complete = sorted(complete)
     for data in complete:
-        print("{0}, start: {1}, priority {2}, estimate: ${3}, completion: {4}%".format(data.name,
-                                                                                       data.date.strftime("%d/%m/%Y"),
-                                                                                       data.priority, data.cost,
-                                                                                       data.completion))
+        print(PRINTING.format(data.name,
+                              data.date.strftime("%d/%m/%Y"),
+                              data.priority, data.cost,
+                              data.completion))
 
 
 def sort_project(datas):
@@ -99,11 +102,10 @@ def sort_project(datas):
     date = datetime.datetime.strptime(date, "%d/%m/%Y").date()
     for data in datas:
         if data.date >= date:
-            print("{0}, start: {1}, priority {2}, estimate: ${3}, completion: {4}%".format(data.name,
-                                                                                           data.date.strftime(
-                                                                                               "%d/%m/%Y"),
-                                                                                           data.priority, data.cost,
-                                                                                           data.completion))
+            print(PRINTING.format(data.name,
+                                  data.date.strftime("%d/%m/%Y"),
+                                  data.priority, data.cost,
+                                  data.completion))
 
 
 def add_data(datas):
@@ -114,11 +116,30 @@ def add_data(datas):
     priority = int(input("Priority: "))
     cost = float(input("Cost estimate: $"))
     completion = int(input("Percent complete: "))
-    datas.append(Project(name,date,int(priority),float(cost),int(completion)))
+    datas.append(Project(name, date, int(priority), float(cost), int(completion)))
     return datas
 
-def update_data():
-    pass
+
+def update_data(datas):
+    for data in datas:
+        print("{5} {0}, start: {1}, priority {2}, estimate: ${3}, completion: {4}%".format(data.name,
+                                                                                           data.date.strftime(
+                                                                                               "%d/%m/%Y"),
+                                                                                           data.priority, data.cost,
+                                                                                           data.completion,
+                                                                                           datas.index(data)))
+    choice = int(input("Project choice: "))
+    print(PRINTING.format(datas[choice].name,
+                          datas[choice].date.strftime(
+                              "%d/%m/%Y"),
+                          datas[choice].priority,
+                          datas[choice].cost,
+                          datas[choice].completion))
+    completion = int(input("New Percentage: "))
+    priority = int(input("New Priority: "))
+
+    datas[choice] = Project(datas[choice].name, datas[choice].date, priority, datas[choice].cost, completion)
+    return datas
 
 
 main()
