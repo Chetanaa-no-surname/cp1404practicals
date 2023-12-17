@@ -7,8 +7,6 @@ from project import Project
 MENU = ("- (L)oad projects\n- (S)ave projects\n- (D)isplay projects\n- (F)ilter projects by date\n- (A)dd new "
         "project\n- (U)pdate project\n- (Q)uit")
 
-PRINTING = "{0}, start: {1}, priority {2}, estimate: ${3}, completion: {4}%"
-
 
 def main():
     """Main menu function with options"""
@@ -89,18 +87,12 @@ def display_project(datas):
     print("Incomplete projects:")
     incomplete = sorted(incomplete)
     for data in incomplete:
-        print(PRINTING.format(data.name,
-                              data.date.strftime("%d/%m/%Y"),
-                              data.priority, data.cost,
-                              data.completion))
+        print(data.__str__())
 
     print("Completed projects: ")
     complete = sorted(complete)
     for data in complete:
-        print(PRINTING.format(data.name,
-                              data.date.strftime("%d/%m/%Y"),
-                              data.priority, data.cost,
-                              data.completion))
+        print(data.__str__())
 
 
 def sort_project(datas):
@@ -109,10 +101,7 @@ def sort_project(datas):
     date = datetime.datetime.strptime(date, "%d/%m/%Y").date()
     for data in datas:
         if data.date >= date:
-            print(PRINTING.format(data.name,
-                                  data.date.strftime("%d/%m/%Y"),
-                                  data.priority, data.cost,
-                                  data.completion))
+            print(data.__str__())
 
 
 def add_data(datas):
@@ -138,12 +127,7 @@ def update_data(datas):
                                                                                            data.completion,
                                                                                            datas.index(data)))
     choice = int(input("Project choice: "))
-    print(PRINTING.format(datas[choice].name,
-                          datas[choice].date.strftime(
-                              "%d/%m/%Y"),
-                          datas[choice].priority,
-                          datas[choice].cost,
-                          datas[choice].completion))
+    print(data.__str__())
 
     try:
         completion = int(input("New Percentage: "))
