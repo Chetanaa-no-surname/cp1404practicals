@@ -9,6 +9,5 @@ Practical 7, all it's exercises and files
 - Plan the functions you can use
 - Do not use long variable names
 
-[Programming patterns]
-[CP1404 PRAC Intructions]
+https://github.com/CP1404/Practicals/tree/master/prac_07
 
