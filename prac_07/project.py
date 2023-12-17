@@ -14,11 +14,10 @@ class Project:
         self.cost = cost
         self.completion = completion
 
-    def update_completion(self, new_completion):
+    def update_data(self, new_completion,new_priority):
         self.completion = new_completion
-
-    def update_priority(self,new_priority):
         self.priority = new_priority
+
 
 
 
