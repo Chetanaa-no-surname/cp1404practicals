@@ -11,6 +11,7 @@ PRINTING = "{0}, start: {1}, priority {2}, estimate: ${3}, completion: {4}%"
 
 
 def main():
+    """Main menu function with options"""
     name = "projects"  # will be fixed as this unless a load option is chosen and then data will change
     datas = load_project(name)
     print(MENU)
@@ -32,12 +33,14 @@ def main():
             datas = update_data(datas)
         else:
             print("Invalid option ")
+        print(MENU)
         option = input(">>> ").upper()
 
     print("Thank you for using custom-built project management software.")
 
 
 def load_project(name):
+    """To add data from the file mentioned"""
     in_file = open(f"{name}.txt", "r")
     datas = []
     object_datas = []
@@ -55,6 +58,7 @@ def load_project(name):
 
 
 def changed_to_datetime(datas):
+    """For conversion of string to datetime"""
     for data in datas:
         date = datetime.datetime.strptime(data[1], "%d/%m/%Y").date()
         data[1] = date
@@ -62,6 +66,7 @@ def changed_to_datetime(datas):
 
 
 def save_project(name, datas):
+    """To save current data"""
     in_file = open(f"{name}.txt", "w")
     in_file.write("Name	Start Date	Priority	Cost Estimate	Completion Percentage")
     for data in datas:
@@ -72,6 +77,7 @@ def save_project(name, datas):
 
 
 def display_project(datas):
+    """To print and output current data"""
     incomplete = []
     complete = []
     for data in datas:
@@ -98,6 +104,7 @@ def display_project(datas):
 
 
 def sort_project(datas):
+    """To output data meeting date condition"""
     date = input("Show projects that start after date (dd/mm/yy): ")
     date = datetime.datetime.strptime(date, "%d/%m/%Y").date()
     for data in datas:
@@ -109,6 +116,7 @@ def sort_project(datas):
 
 
 def add_data(datas):
+    """To add data to current data set"""
     print("Let's add a new project")
     name = input("Name:")
     date = input("Start date (dd/mm/yy): ")
@@ -121,6 +129,7 @@ def add_data(datas):
 
 
 def update_data(datas):
+    """To update current data set"""
     for data in datas:
         print("{5} {0}, start: {1}, priority {2}, estimate: ${3}, completion: {4}%".format(data.name,
                                                                                            data.date.strftime(
@@ -135,8 +144,15 @@ def update_data(datas):
                           datas[choice].priority,
                           datas[choice].cost,
                           datas[choice].completion))
-    completion = int(input("New Percentage: "))
-    priority = int(input("New Priority: "))
+
+    try:
+        completion = int(input("New Percentage: "))
+    except ValueError:
+        completion = datas[choice].completion
+    try:
+        priority = int(input("New Priority: "))
+    except ValueError:
+        priority = datas[choice].priority
 
     datas[choice] = Project(datas[choice].name, datas[choice].date, priority, datas[choice].cost, completion)
     return datas
