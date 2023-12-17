@@ -20,7 +20,7 @@ def main():
 
     guitars = sorted(guitars)
     print_data(guitars)
-    write_to_file(new_guitars,"guitars")
+    write_to_file(new_guitars, "guitars")
 
 
 def get_file_data(name):
@@ -38,12 +38,11 @@ def print_data(guitars):
         print(f"{guitar.name} was bought in {guitar.year} and costs {guitar.cost}")
 
 
-def write_to_file(datas,name):
+def write_to_file(datas, name):
     in_file = open(f"{name}.csv", "a")
     for data in datas:
-        in_file.write(f"{data[0]},{data[1]},{data[2]}")
+        in_file.write(f"\n{data[0]},{data[1]},{data[2]}")
     in_file.close()
-
 
 
 main()
