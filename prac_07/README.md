@@ -5,8 +5,8 @@
 
 Practical 7, all it's exercises and files
 
-- Do not add too much comments or they'll become noise
-- lesson2 
+- Do not add too much comments or it'll become noise
+- 
 - lessens 3
 
 [Programming patterns]

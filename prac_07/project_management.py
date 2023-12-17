@@ -127,7 +127,7 @@ def update_data(datas):
                                                                                            data.completion,
                                                                                            datas.index(data)))
     choice = int(input("Project choice: "))
-    print(data.__str__())
+    print(datas.__str__())
 
     try:
         completion = int(input("New Percentage: "))
