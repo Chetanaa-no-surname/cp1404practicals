@@ -28,7 +28,12 @@ class DynamicLabelsApp(App):
         """Create labels from data and add to GUI"""
         for name in self.label_names:
             temp_label = Label(text=name)
-            temp_label.bind(on_press = self.press_enter)
             temp_label.background_color = (1, 0, 1, 1)
-            self.root.ids.main.add_label(temp_label)
+            self.root.ids.main.add_widget(temp_label)
 
+    def clear_all(self):
+        """Clear all labels in "main" layout widget."""
+        self.root.ids.main.clear_widgets()
+
+
+DynamicLabelsApp().run()
